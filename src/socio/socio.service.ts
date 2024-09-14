@@ -28,9 +28,7 @@ export class SocioService {
         if (!socio.correoElectronico.includes('@'))
             throw new BusinessLogicException("El correo electronico no contiene el formato adecuado", BusinessError.BAD_REQUEST);
         
-        return await this.socioRepository.save(socio);
-
-            
+        return await this.socioRepository.save(socio);         
    }
 
    async update(id: string, socio: SocioEntity): Promise<SocioEntity> {

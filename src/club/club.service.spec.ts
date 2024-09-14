@@ -26,8 +26,7 @@ describe('ClubService', () => {
   const seedDatabase = async () => {
     repository.clear();
     clubsList = [];
-    for(let i = 0; i < 5; i++){  
-              
+    for(let i = 0; i < 5; i++){        
         const club: ClubEntity = await repository.save({
           nombre: faker.name.firstName(), 
           fechaFundacion: '09/03/1983',
