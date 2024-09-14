@@ -132,9 +132,9 @@ describe('SocioClubService', () => {
     await expect(()=> service.findMemberFromClub(socio.id, newClub.id)).rejects.toHaveProperty("message", "el club con este id no esta asociado al socio"); 
   });
 
-  it('findClubesBySocioId should return clubes by socio', async ()=>{
-    const clubes: ClubEntity[] = await service.findMembersFromClub(socio.id);
-    expect(clubes.length).toBe(5)
+  it('findClubesBySocioId should return socios by club', async ()=>{
+    const socios: SocioEntity[] = await service.findMembersFromClub(socio.id);
+    expect(socios.length).toBe(5)
   });
 
   it('findClubesBySocioId should throw an exception for an invalid socio', async () => {

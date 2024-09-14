@@ -5,16 +5,20 @@ import { BusinessErrorsInterceptor } from '../shared/interceptors/business-error
 import { SocioClubService } from './socio-club.service';
 import { ClubDto } from '../club/club.dto';
 import { ClubEntity } from '../club/club.entity';
+import { SocioEntity } from '../socio/socio.entity';
 
 
-@Controller('socios')
+@Controller('clubs')
 @UseInterceptors(BusinessErrorsInterceptor)
 export class SocioClubController {
    constructor(private readonly socioClubService: SocioClubService){}
     
 
-@Post(':socioId/clubes/:clubId')
-   async addMemberToClub(@Param('socioId') socioId: string, @Param('clubId') clubId: string){
+@Post(':clubId/members/:socioId')
+   async addMemberToClub(
+    @Param('clubId') clubId: string, 
+    @Param('socioId') socioId: string
+    ): Promise<SocioEntity> {
        return await this.socioClubService.addMemberToClub(socioId, clubId);
     }
 
@@ -23,9 +27,9 @@ async findMemberFromClub(@Param('socioId') socioId: string, @Param('clubId') clu
     return await this.socioClubService.findMemberFromClub(socioId, clubId);
     }
 
-@Get(':socioId/clubes')
-   async findMembersFromClub(@Param('socioId') socioId: string){
-       return await this.socioClubService.findMembersFromClub(socioId);
+@Get(':clubId/members')
+   async findMembersFromClub(@Param('clubId') clubId: string){
+       return await this.socioClubService.findMembersFromClub(clubId);
     }
 
 @Put(':socioId/clubes')
