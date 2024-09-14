@@ -71,7 +71,7 @@ describe('SocioClubService', () => {
    } as SocioEntity);
   
 
-    const result: SocioEntity = await service.addClubSocio(newSocio.id, newClub.id);
+    const result: SocioEntity = await service.addMemberToClub(newSocio.id, newClub.id);
     
     expect(result.clubes.length).toBe(1);
     expect(result.clubes[0]).not.toBeNull();
@@ -88,7 +88,7 @@ describe('SocioClubService', () => {
       fechaNacimiento: '09/03/1983'
     })
 
-    await expect(() => service.addClubSocio(newSocio.id, "0")).rejects.toHaveProperty("message", "El club con este id no fue encontrado");
+    await expect(() => service.addMemberToClub(newSocio.id, "0")).rejects.toHaveProperty("message", "El club con este id no fue encontrado");
   });
 
   it('addClubSocio should throw an exception for an invalid socio', async () => {
@@ -99,12 +99,12 @@ describe('SocioClubService', () => {
       descripcion: generarTextoMax(99)
     });
 
-    await expect(() => service.addClubSocio("0", newClub.id)).rejects.toHaveProperty("message", "El socio con este id no fue encontrado");
+    await expect(() => service.addMemberToClub("0", newClub.id)).rejects.toHaveProperty("message", "El socio con este id no fue encontrado");
   });
 
   it('findClubBySocioIdClubId should return club by socio', async () => {
     const club: ClubEntity = clubesList[0];
-    const storedClub: ClubEntity = await service.findClubBySocioIdClubId(socio.id, club.id, )
+    const storedClub: ClubEntity = await service.findMemberFromClub(socio.id, club.id, )
     expect(storedClub).not.toBeNull();
     expect(storedClub.nombre).toBe(club.nombre);
     expect(storedClub.fechaFundacion).toBe(club.fechaFundacion);
@@ -113,12 +113,12 @@ describe('SocioClubService', () => {
   });
 
   it('findClubBySocioIdClubId should throw an exception for an invalid club', async () => {
-    await expect(()=> service.findClubBySocioIdClubId(socio.id, "0")).rejects.toHaveProperty("message", "El club con este id no fue encontrado"); 
+    await expect(()=> service.findMemberFromClub(socio.id, "0")).rejects.toHaveProperty("message", "El club con este id no fue encontrado"); 
   });
 
   it('findClubBySocioIdClubId should throw an exception for an invalid socio', async () => {
     const club: ClubEntity = clubesList[0]; 
-    await expect(()=> service.findClubBySocioIdClubId("0", club.id)).rejects.toHaveProperty("message", "El socio con este id no fue encontrado"); 
+    await expect(()=> service.findMemberFromClub("0", club.id)).rejects.toHaveProperty("message", "El socio con este id no fue encontrado"); 
   });
 
   it('findClubBySocioIdClubId should throw an exception for an club not associated to the socio', async () => {
@@ -129,16 +129,16 @@ describe('SocioClubService', () => {
       descripcion: generarTextoMax(99)
     });
 
-    await expect(()=> service.findClubBySocioIdClubId(socio.id, newClub.id)).rejects.toHaveProperty("message", "el club con este id no esta asociado al socio"); 
+    await expect(()=> service.findMemberFromClub(socio.id, newClub.id)).rejects.toHaveProperty("message", "el club con este id no esta asociado al socio"); 
   });
 
   it('findClubesBySocioId should return clubes by socio', async ()=>{
-    const clubes: ClubEntity[] = await service.findClubesBySocioId(socio.id);
+    const clubes: ClubEntity[] = await service.findMembersFromClub(socio.id);
     expect(clubes.length).toBe(5)
   });
 
   it('findClubesBySocioId should throw an exception for an invalid socio', async () => {
-    await expect(()=> service.findClubesBySocioId("0")).rejects.toHaveProperty("message", "El socio con este id no fue encontrado"); 
+    await expect(()=> service.findMembersFromClub("0")).rejects.toHaveProperty("message", "El socio con este id no fue encontrado"); 
   });
 
   it('associateClubesSocio should update clubes list for a socio', async () => {
@@ -149,7 +149,7 @@ describe('SocioClubService', () => {
       descripcion: generarTextoMax(99) 
     });
 
-    const updatedSocio: SocioEntity = await service.associateClubesSocio(socio.id, [newClub]);
+    const updatedSocio: SocioEntity = await service.updateMembersFromClub(socio.id, [newClub]);
     expect(updatedSocio.clubes.length).toBe(1);
 
     expect(updatedSocio.clubes[0].nombre).toBe(newClub.nombre);
@@ -166,20 +166,20 @@ describe('SocioClubService', () => {
       descripcion: generarTextoMax(99)
   });
 
-    await expect(()=> service.associateClubesSocio("0", [newClub])).rejects.toHaveProperty("message", "El socio con este id no fue encontrado"); 
+    await expect(()=> service.updateMembersFromClub("0", [newClub])).rejects.toHaveProperty("message", "El socio con este id no fue encontrado"); 
   });
 
   it('associateClubesSocio should throw an exception for an invalid club', async () => {
     const newClub: ClubEntity = clubesList[0];
     newClub.id = "0";
 
-    await expect(()=> service.associateClubesSocio(socio.id, [newClub])).rejects.toHaveProperty("message", "El club con este id no fue encontrado"); 
+    await expect(()=> service.updateMembersFromClub(socio.id, [newClub])).rejects.toHaveProperty("message", "El club con este id no fue encontrado"); 
   });
 
   it('deleteClubToSocio should remove an club from a socio', async () => {
     const club: ClubEntity = clubesList[0];
     
-    await service.deleteClubSocio(socio.id, club.id);
+    await service.deleteMemberFromClub(socio.id, club.id);
 
     const storedSocio: SocioEntity = await socioRepository.findOne({where: {id: socio.id}, relations: ["clubes"]});
     const deletedClub: ClubEntity = storedSocio.clubes.find(a => a.id === club.id);
@@ -189,12 +189,12 @@ describe('SocioClubService', () => {
   });
 
   it('deleteClubToSocio should thrown an exception for an invalid club', async () => {
-    await expect(()=> service.deleteClubSocio(socio.id, "0")).rejects.toHaveProperty("message", "El club con este id no fue encontrado"); 
+    await expect(()=> service.deleteMemberFromClub(socio.id, "0")).rejects.toHaveProperty("message", "El club con este id no fue encontrado"); 
   });
 
   it('deleteClubToSocio should thrown an exception for an invalid socio', async () => {
     const club: ClubEntity = clubesList[0];
-    await expect(()=> service.deleteClubSocio("0", club.id)).rejects.toHaveProperty("message", "El socio con este id no fue encontrado"); 
+    await expect(()=> service.deleteMemberFromClub("0", club.id)).rejects.toHaveProperty("message", "El socio con este id no fue encontrado"); 
   });
 
   it('deleteClubToSocio should thrown an exception for an non asocciated club', async () => {
@@ -205,7 +205,7 @@ describe('SocioClubService', () => {
       descripcion: generarTextoMax(99)
     });
 
-    await expect(()=> service.deleteClubSocio(socio.id, newClub.id)).rejects.toHaveProperty("message", "el club con este id no esta asociado al socio"); 
+    await expect(()=> service.deleteMemberFromClub(socio.id, newClub.id)).rejects.toHaveProperty("message", "el club con este id no esta asociado al socio"); 
   }); 
 
 });
