@@ -214,14 +214,3 @@ function generarTextoMax(maxLength: number): string {
   return textoAleatorio.length > maxLength ? textoAleatorio.slice(0, maxLength) : textoAleatorio;
 }
 
-
-function generarTextoMin(minLength: number): string {
-  let textoAleatorio: string = faker.lorem.paragraph(); // Genera un párrafo inicial
-
-  // Si el texto generado es menor a 101 caracteres, sigue añadiendo más texto
-  while (textoAleatorio.length < minLength) {
-      textoAleatorio += ' ' + faker.lorem.sentence(); // Añade una oración más
-  }
-
-  return textoAleatorio;
-}

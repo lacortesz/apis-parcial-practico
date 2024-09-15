@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* Global imports */
 import {Test, TestingModule} from '@nestjs/testing';
 import {getRepositoryToken} from '@nestjs/typeorm';
@@ -26,7 +27,7 @@ describe('club-socio', () => {
     for (let i = 0; i < 5; i++) {
       const club: ClubEntity = await clubRepository.save({
         nombre: faker.name.firstName(), 
-        fechaFundacion: "09/03/1983",
+        fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
         imagen: faker.image.imageUrl(),
         descripcion: generarTextoMax(99),          
         socios: []
