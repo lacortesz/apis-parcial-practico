@@ -37,7 +37,7 @@ describe('club-socio', () => {
       const socio: SocioEntity = await socioRepository.save({
         nombre: faker.name.firstName(), 
         correoElectronico: faker.internet.email(),
-        fechaNacimiento: "09/03/1983",
+        fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
         clubes: []
       } as SocioEntity);
       sociosList.push(socio);
