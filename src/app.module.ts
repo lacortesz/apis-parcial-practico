@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { SocioModule } from './socio/socio.module';
 import { ClubModule } from './club/club.module';
-import { SocioClubModule } from './socio-club/socio-club.module';
+import { SocioClubModule } from './club-socio/club-socio.module';
 import { SocioEntity } from './socio/socio.entity';
 import { ClubEntity } from './club/club.entity';
 

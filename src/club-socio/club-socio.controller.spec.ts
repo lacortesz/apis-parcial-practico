@@ -4,15 +4,15 @@ import {getRepositoryToken} from '@nestjs/typeorm';
 import {faker} from '@faker-js/faker';
 import {Repository} from 'typeorm';
 /* socio-club imports */
-import {SocioClubController} from './socio-club.controller';
-import {SocioClubService} from './socio-club.service';
+import { ClubSocioController } from './club-socio.controller'; 
+import {ClubSocioService} from './club-socio.service';
 import {ClubEntity} from '../club/club.entity';
 import {SocioEntity} from '../socio/socio.entity';
-import {ClubDto} from '../club/club.dto';
+import {SocioDto} from '../socio/socio.dto';
 import { TypeOrmTestingConfig } from '../shared/testing-utils/typeorm-testing-config';
 
-describe('socio-club', () => {
-  let controller: SocioClubController;
+describe('club-socio', () => {
+  let controller: ClubSocioController;
   let socioRepository: Repository<SocioEntity>;
   let clubRepository: Repository<ClubEntity>;
   let sociosList: SocioEntity[];
@@ -26,7 +26,7 @@ describe('socio-club', () => {
     for (let i = 0; i < 5; i++) {
       const club: ClubEntity = await clubRepository.save({
         nombre: faker.name.firstName(), 
-        fechaFundacion: '09/03/1983',
+        fechaFundacion: "09/03/1983",
         imagen: faker.image.imageUrl(),
         descripcion: generarTextoMax(99),          
         socios: []
@@ -37,7 +37,7 @@ describe('socio-club', () => {
       const socio: SocioEntity = await socioRepository.save({
         nombre: faker.name.firstName(), 
         correoElectronico: faker.internet.email(),
-        fechaNacimiento: '09/03/1983',
+        fechaNacimiento: "09/03/1983",
         clubes: []
       } as SocioEntity);
       sociosList.push(socio);
@@ -47,10 +47,10 @@ describe('socio-club', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [...TypeOrmTestingConfig()],
-      providers: [SocioClubService],
-      controllers: [SocioClubController]
+      providers: [ClubSocioService],
+      controllers: [ClubSocioController]
     }).compile();
-    controller = module.get<SocioClubController>(SocioClubController);
+    controller = module.get<ClubSocioController>(ClubSocioController);
     socioRepository = module.get<Repository<SocioEntity>>(getRepositoryToken(SocioEntity));
     clubRepository = module.get<Repository<ClubEntity>>(getRepositoryToken(ClubEntity));
     await seedDatabase();
@@ -60,48 +60,47 @@ describe('socio-club', () => {
     expect(controller).toBeDefined();
   });
 
-  it('should add a club to socio', async () => {
+  it('should add a socio to club', async () => {
     const socioId: string = sociosList[0].id;
     const clubId: string = clubesList[0].id;
-    const socio: SocioEntity = await controller.addMemberToClub(socioId, clubId);
-    expect(socio.clubes.length).toBe(1);
+    const club: ClubEntity = await controller.addMemberToClub(clubId, socioId);
+    expect(club.socios.length).toBe(1);
   });
 
-  it('should get a club of socio', async () => {
+  it('should get a socio of club', async () => {
     const socioId: string = sociosList[0].id;
     const clubId: string = clubesList[0].id;
-    await controller.addMemberToClub(socioId, clubId);
-    const club: ClubEntity = await controller.findMemberFromClub(socioId, clubId);
-    expect(club.id).toBe(clubId);
+    await controller.addMemberToClub(clubId, socioId);
+    const socio: SocioEntity = await controller.findMemberFromClub(clubId, socioId);
+    expect(socio.id).toBe(socioId);
   });
 
-  it('should get all the clubes of socio', async () => {
-    const socioId: string = sociosList[0].id;
-    await controller.addMemberToClub(socioId, clubesList[0].id);
-    await controller.addMemberToClub(socioId, clubesList[1].id);
-    const clubes: ClubEntity[] = await controller.findMembersFromClub(socioId);
-    expect(clubes.length).toBe(2);
-  });
-
-  it('should update the clubes of socio', async () => {
-    const clubesDto: ClubDto[] = [{...clubesList[2]}];
-    const socioId: string = sociosList[0].id;
-    await controller.addMemberToClub(socioId, clubesList[0].id);
-    await controller.addMemberToClub(socioId, clubesList[1].id);
-    const socio: SocioEntity = await controller.updateMembersFromClub(clubesDto, socioId);
-    expect(socio.clubes.length).toBe(1);
-    expect(socio.clubes[0].id).toBe(clubesList[2].id);
-  });
-
-  it('should delete a club of socio', async () => {
-    const socioId: string = sociosList[0].id;
+  it('should get all the socios of club', async () => {
     const clubId: string = clubesList[0].id;
-    await controller.addMemberToClub(socioId, clubesList[0].id);
-    await controller.addMemberToClub(socioId, clubesList[1].id);
-    await controller.addMemberToClub(socioId, clubesList[2].id);
-    await controller.deleteMemberFromClub(socioId, clubId);
-    const clubes: ClubEntity[] = await controller.findMembersFromClub(socioId);
-    expect(clubes.length).toBe(2);
+    await controller.addMemberToClub(clubId, sociosList[0].id);
+    await controller.addMemberToClub(clubId, sociosList[1].id);
+    const socios: SocioEntity[] = await controller.findMembersFromClub(clubId);
+    expect(socios.length).toBe(2);
+  });
+
+  it('should update the socios of a club', async () => {
+    const sociosDto: SocioDto[] = [{...sociosList[2]}];
+    const clubId: string = clubesList[0].id;
+    await controller.addMemberToClub(clubId, sociosList[0].id);
+    await controller.addMemberToClub(clubId, sociosList[1].id);
+    const club: ClubEntity = await controller.updateMembersFromClub(sociosDto, clubId);
+    expect(club.socios.length).toBe(1);
+    expect(club.socios[0].id).toBe(sociosList[2].id);
+  });
+
+  it('should delete a socio of club', async () => {
+    const clubId: string = clubesList[0].id;
+    await controller.addMemberToClub(clubId, sociosList[0].id);
+    await controller.addMemberToClub(clubId, sociosList[1].id);
+    await controller.addMemberToClub(clubId, sociosList[2].id);
+    await controller.deleteMemberFromClub(clubId, sociosList[0].id);
+    const socios: SocioEntity[] = await controller.findMembersFromClub(clubId);
+    expect(socios.length).toBe(2);
   });
 });
 
