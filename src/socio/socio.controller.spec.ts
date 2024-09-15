@@ -16,7 +16,7 @@ describe('socio controller', () => {
   const socioMock: SocioEntity = {
       nombre: faker.name.firstName(), 
       correoElectronico: faker.internet.email(),
-      fechaNacimiento: '09/03/1983',
+      fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
       clubes: []
   } as SocioEntity;
 

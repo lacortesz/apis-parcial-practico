@@ -30,7 +30,7 @@ describe('SocioService', () => {
         const socio: SocioEntity = await repository.save({
           nombre: faker.name.firstName(), 
           correoElectronico: faker.internet.email(),
-          fechaNacimiento: '09/03/1983',
+          fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
           clubes: []
       } as SocioEntity);
       sociosList.push(socio);
@@ -65,7 +65,7 @@ describe('SocioService', () => {
       id: "",
       nombre: faker.name.firstName(), 
       correoElectronico: faker.internet.email(),
-      fechaNacimiento: '09/03/1983',
+      fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
       clubes: []
     }
 
@@ -84,7 +84,7 @@ describe('SocioService', () => {
       id: "",
       nombre: faker.name.firstName(), 
       correoElectronico: 'bad.email',
-      fechaNacimiento: '09/03/1983',
+      fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
       clubes: []
     }
 

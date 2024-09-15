@@ -15,7 +15,7 @@ describe('club controller', () => {
   let clubsList: ClubEntity[];
   const clubMock: ClubEntity = {
     nombre: faker.name.firstName(), 
-    fechaFundacion: '09/03/1983',
+    fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
     imagen: faker.image.imageUrl(),
     descripcion: generarTextoMax(99),          
     socios: []

@@ -37,7 +37,7 @@ describe('SocioClubService', () => {
       const socio: SocioEntity = await socioRepository.save({
         nombre: faker.name.firstName(), 
         correoElectronico: faker.internet.email(),
-        fechaNacimiento: '09/03/1983',
+        fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
         clubes: []
     } as SocioEntity);
 
@@ -60,7 +60,7 @@ describe('SocioClubService', () => {
   it('addClubSocio should add an socio to a club', async () => {
     const newClub: ClubEntity = await clubRepository.save({
       nombre: faker.name.firstName(), 
-      fechaFundacion: '09/03/1983',
+      fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
       imagen: faker.image.imageUrl(),
       descripcion: generarTextoMax(99),
       socios: sociosList        
@@ -69,7 +69,7 @@ describe('SocioClubService', () => {
     const newSocio: SocioEntity = await socioRepository.save({
         nombre: faker.name.firstName(), 
         correoElectronico: faker.internet.email(),
-        fechaNacimiento: '09/03/1983',
+        fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
         clubes: []
    } as SocioEntity);
   
@@ -86,7 +86,7 @@ describe('SocioClubService', () => {
     const newSocio: SocioEntity = await socioRepository.save({
       nombre: faker.name.firstName(), 
       correoElectronico: faker.internet.email(),
-      fechaNacimiento: '09/03/1983'
+      fechaNacimiento: faker.date.past().toLocaleDateString('es-ES')
     })
 
     await expect(() => service.addMemberToClub("0", newSocio.id)).rejects.toHaveProperty("message", "El club con este id no fue encontrado");
@@ -95,7 +95,7 @@ describe('SocioClubService', () => {
   it('addClubSocio should throw an exception for an invalid socio', async () => {
     const newClub: ClubEntity = await clubRepository.save({
       nombre: faker.name.firstName(), 
-      fechaFundacion: '09/03/1983',
+      fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
       imagen: faker.image.imageUrl(),
       descripcion: generarTextoMax(99)
     });
@@ -125,7 +125,7 @@ describe('SocioClubService', () => {
     const newSocio: SocioEntity = await socioRepository.save({
       nombre: faker.name.firstName(), 
 	    correoElectronico: faker.internet.email(),
-	    fechaNacimiento: '09/03/1983',
+	    fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
 	    clubes: []
     } as SocioEntity);
 
@@ -145,7 +145,7 @@ describe('SocioClubService', () => {
     const newSocio: SocioEntity = await socioRepository.save({
       nombre: faker.name.firstName(), 
       correoElectronico: faker.internet.email(),
-      fechaNacimiento: '09/03/1983',
+      fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
       clubes: []
     } as SocioEntity);
 
