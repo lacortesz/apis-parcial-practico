@@ -14,9 +14,9 @@ describe('club controller', () => {
   let repository: Repository<ClubEntity>;
   let clubsList: ClubEntity[];
   const clubMock: ClubEntity = {
-    nombre: faker.name.firstName(), 
+    nombre: faker.person.fullName(), 
     fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
-    imagen: faker.image.imageUrl(),
+    imagen: faker.image.url(),
     descripcion: generarTextoMax(99),          
     socios: []
   } as ClubEntity;

@@ -26,9 +26,9 @@ describe('club-socio', () => {
     clubesList = [];
     for (let i = 0; i < 5; i++) {
       const club: ClubEntity = await clubRepository.save({
-        nombre: faker.name.firstName(), 
+        nombre: faker.person.fullName(), 
         fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
-        imagen: faker.image.imageUrl(),
+        imagen: faker.image.url(),
         descripcion: generarTextoMax(99),          
         socios: []
       } as ClubEntity);
@@ -36,7 +36,7 @@ describe('club-socio', () => {
     }
     for (let i = 0; i < 5; i++) {
       const socio: SocioEntity = await socioRepository.save({
-        nombre: faker.name.firstName(), 
+        nombre: faker.person.fullName(), 
         correoElectronico: faker.internet.email(),
         fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
         clubes: []

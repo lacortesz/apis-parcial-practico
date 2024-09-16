@@ -14,7 +14,7 @@ describe('socio controller', () => {
   let repository: Repository<SocioEntity>;
   let sociosList: SocioEntity[];
   const socioMock: SocioEntity = {
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       correoElectronico: faker.internet.email(),
       fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
       clubes: []

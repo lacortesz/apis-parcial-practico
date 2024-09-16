@@ -28,7 +28,7 @@ describe('SocioService', () => {
     sociosList = [];
     for(let i = 0; i < 5; i++){
         const socio: SocioEntity = await repository.save({
-          nombre: faker.name.firstName(), 
+          nombre: faker.person.fullName(), 
           correoElectronico: faker.internet.email(),
           fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
           clubes: []
@@ -63,7 +63,7 @@ describe('SocioService', () => {
   it('create should return a new socio', async () => {
     const socio: SocioEntity = {
       id: "",
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       correoElectronico: faker.internet.email(),
       fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
       clubes: []
@@ -82,7 +82,7 @@ describe('SocioService', () => {
   it('create with a email formar should return bad request', async () => {
     const socio: SocioEntity = {
       id: "",
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       correoElectronico: 'bad.email',
       fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
       clubes: []
