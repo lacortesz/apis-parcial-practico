@@ -35,7 +35,7 @@ describe('SocioClubService', () => {
     sociosList = [];
     for(let i = 0; i < 5; i++){
       const socio: SocioEntity = await socioRepository.save({
-        nombre: faker.name.firstName(), 
+        nombre: faker.person.fullName(), 
         correoElectronico: faker.internet.email(),
         fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
         clubes: []
@@ -45,9 +45,9 @@ describe('SocioClubService', () => {
     }
 
     club = await clubRepository.save({
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
-      imagen: faker.image.imageUrl(),
+      imagen: faker.image.url(),
       descripcion: generarTextoMax(99),          
       socios: sociosList
     } as ClubEntity)
@@ -59,15 +59,15 @@ describe('SocioClubService', () => {
 
   it('addClubSocio should add an socio to a club', async () => {
     const newClub: ClubEntity = await clubRepository.save({
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
-      imagen: faker.image.imageUrl(),
+      imagen: faker.image.url(),
       descripcion: generarTextoMax(99),
       socios: sociosList        
     } as ClubEntity);
 
     const newSocio: SocioEntity = await socioRepository.save({
-        nombre: faker.name.firstName(), 
+        nombre: faker.person.fullName(), 
         correoElectronico: faker.internet.email(),
         fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
         clubes: []
@@ -84,7 +84,7 @@ describe('SocioClubService', () => {
 
   it('addClubSocio should thrown exception for an invalid club', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       correoElectronico: faker.internet.email(),
       fechaNacimiento: faker.date.past().toLocaleDateString('es-ES')
     })
@@ -94,9 +94,9 @@ describe('SocioClubService', () => {
 
   it('addClubSocio should throw an exception for an invalid socio', async () => {
     const newClub: ClubEntity = await clubRepository.save({
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
-      imagen: faker.image.imageUrl(),
+      imagen: faker.image.url(),
       descripcion: generarTextoMax(99)
     });
 
@@ -123,7 +123,7 @@ describe('SocioClubService', () => {
 
   it('findClubBySocioIdClubId should throw an exception for an socio not associated to the club', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
 	    correoElectronico: faker.internet.email(),
 	    fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
 	    clubes: []
@@ -143,7 +143,7 @@ describe('SocioClubService', () => {
 
   it('associateClubesSocio should update socios list for a club', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       correoElectronico: faker.internet.email(),
       fechaNacimiento: faker.date.past().toLocaleDateString('es-ES'),
       clubes: []
@@ -196,7 +196,7 @@ describe('SocioClubService', () => {
 
   it('deleteClubToSocio should thrown an exception for an non asocciated club', async () => {
     const newSocio: SocioEntity = await socioRepository.save({
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
 	    correoElectronico: faker.internet.email(),
 	    fechaNacimiento: "09/03/1983",
 	    clubes: []

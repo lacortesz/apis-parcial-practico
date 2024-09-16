@@ -28,9 +28,9 @@ describe('ClubService', () => {
     clubsList = [];
     for(let i = 0; i < 5; i++){        
         const club: ClubEntity = await repository.save({
-          nombre: faker.name.firstName(), 
+          nombre: faker.person.fullName(), 
           fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),   
-          imagen: faker.image.imageUrl(),
+          imagen: faker.image.url(),
           descripcion: generarTextoMax(99),          
           socios: []
       } as ClubEntity);
@@ -65,9 +65,9 @@ describe('ClubService', () => {
   it('create should return a new club', async () => {
     const club: ClubEntity = {
       id: "",
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
-      imagen: faker.image.imageUrl(),
+      imagen: faker.image.url(),
       descripcion: generarTextoMax(99),          
       socios: []
      
@@ -87,9 +87,9 @@ describe('ClubService', () => {
   it('create with a description longer than 100 characters should return bad request', async () => {
     const club: ClubEntity = {
       id: "",
-      nombre: faker.name.firstName(), 
+      nombre: faker.person.fullName(), 
       fechaFundacion: faker.date.past().toLocaleDateString('es-ES'),
-      imagen: faker.image.imageUrl(),
+      imagen: faker.image.url(),
       descripcion: generarTextoMin(101),          
       socios: []
     }
