@@ -1,0 +1,965 @@
+{
+	"info": {
+		"_postman_id": "e0abe257-5483-4f4d-8b57-3df568846530",
+		"name": "Clubs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37777571"
+	},
+	"item": [
+		{
+			"name": "Crear un club válido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.collectionVariables.set(\"clubId\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"nombre\": \"Club de tenis\",\r\n    \"fechaFundacion\": \"09/03/1983\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",          \r\n    \"socios\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un club válido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"nombre\": \"Club de tenis\",\r\n    \"fechaFundacion\": \"09/03/1983\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",          \r\n    \"socios\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "217"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d9-/dkJ/XH3EPHhZZDe3vVcmXsPRgI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 16:49:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Club de tenis\",\n    \"fechaFundacion\": \"09/03/1983\",\n    \"imagen\": \"http://surl.li/mzfuvq\",\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n    \"socios\": [],\n    \"id\": \"8d09a085-dce2-497e-bee7-ee58f24cae6d\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear un club inválido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"   pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.contains(\"Descripcion excede longitud maxima de 100 caracteres\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"nombre\": \"Juan Perez\",\r\n    \"fechaFundacion\": \"09/03/1983\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquat\",          \r\n    \"socios\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un club inválido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"nombre\": \"Juan Perez\",\r\n    \"fechaFundacion\": \"09/03/1983\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquat\",          \r\n    \"socios\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "83"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"53-TOvSW/JxTWZtGGkfwI4h5wIHCMs\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 16:50:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 400,\n    \"message\": \"Descripcion excede longitud maxima de 100 caracteres\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los clubs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of clubes > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clubes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los clubs",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1963"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"7ab-tCWddM8xmWZcrQfBMk6G9u/fBUQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 16:51:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"7a333ab8-506c-489e-a1fa-2ba5586f623a\",\n        \"nombre\": \"Club de tenis\",\n        \"fechaFundacion\": \"1983-03-09\",\n        \"imagen\": \"http://surl.li/mzfuvq\",\n        \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n        \"socios\": []\n    },\n    {\n        \"id\": \"688d7ebe-2ef7-42cd-8760-a04603766711\",\n        \"nombre\": \"Club de tenis\",\n        \"fechaFundacion\": \"1983-03-09\",\n        \"imagen\": \"http://surl.li/mzfuvq\",\n        \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n        \"socios\": []\n    },\n    {\n        \"id\": \"26ec1ff1-4c3f-4fda-a792-ad655632b582\",\n        \"nombre\": \"Club de tenis\",\n        \"fechaFundacion\": \"1983-03-09\",\n        \"imagen\": \"http://surl.li/mzfuvq\",\n        \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n        \"socios\": []\n    },\n    {\n        \"id\": \"c6771ba6-ec9e-4da6-bc02-ea9b6f1c4bae\",\n        \"nombre\": \"Club de tenis\",\n        \"fechaFundacion\": \"1983-03-09\",\n        \"imagen\": \"http://surl.li/mzfuvq\",\n        \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n        \"socios\": []\n    },\n    {\n        \"id\": \"ddf96796-90e7-49a4-9c5e-7207aa65fcff\",\n        \"nombre\": \"Club de tenis\",\n        \"fechaFundacion\": \"1983-03-09\",\n        \"imagen\": \"http://surl.li/mzfuvq\",\n        \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n        \"socios\": []\n    },\n    {\n        \"id\": \"707f18b8-9526-48d7-82d9-646e8adfa922\",\n        \"nombre\": \"Club de tenis\",\n        \"fechaFundacion\": \"1983-03-09\",\n        \"imagen\": \"http://surl.li/mzfuvq\",\n        \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n        \"socios\": []\n    },\n    {\n        \"id\": \"19496e34-a190-4808-a6d6-20b32b669828\",\n        \"nombre\": \"Club de tenis\",\n        \"fechaFundacion\": \"1983-03-09\",\n        \"imagen\": \"http://surl.li/mzfuvq\",\n        \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n        \"socios\": []\n    },\n    {\n        \"id\": \"67f85fd5-ae49-4ceb-b830-3cc9ffd45861\",\n        \"nombre\": \"Club de tenis\",\n        \"fechaFundacion\": \"1983-03-09\",\n        \"imagen\": \"http://surl.li/mzfuvq\",\n        \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n        \"socios\": []\n    },\n    {\n        \"id\": \"8d09a085-dce2-497e-bee7-ee58f24cae6d\",\n        \"nombre\": \"Club de tenis\",\n        \"fechaFundacion\": \"1983-03-09\",\n        \"imagen\": \"http://surl.li/mzfuvq\",\n        \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n        \"socios\": []\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un club por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Id recuperado igual al enviado ', function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.id).to.eql(pm.collectionVariables.get(\"clubId\"))\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clubes/{{clubId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes",
+						"{{clubId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un club por ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "217"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d9-7d4CBnimq7eJH4L8S344zIAHNgE\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 16:51:55 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"8d09a085-dce2-497e-bee7-ee58f24cae6d\",\n    \"nombre\": \"Club de tenis\",\n    \"fechaFundacion\": \"1983-03-09\",\n    \"imagen\": \"http://surl.li/mzfuvq\",\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n    \"socios\": []\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un club por un ID que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El club con este id no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clubes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un club por un ID que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44-s0oiYEbdHvbecQYjVqP5dvZiSPo\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 16:52:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El club con este id no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validar nuevo nombre\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.nombre).to.eql(\"Club colombiano de tenis\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar nueva fecha fundacion\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.fechaFundacion).to.eql(\"11/11/1985\");\r",
+							"});\r",
+							"\r",
+							"pm.test('Id recuperado igual al enviado ', function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.id).to.eql(pm.collectionVariables.get(\"clubId\"))\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"nombre\": \"Club colombiano de tenis\",\r\n    \"fechaFundacion\": \"11/11/1985\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",          \r\n    \"socios\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubes/{{clubId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes",
+						"{{clubId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un club",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"nombre\": \"Club colombiano de tenis\",\r\n    \"fechaFundacion\": \"11/11/1985\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",          \r\n    \"socios\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "228"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e4-3OZ8Bc1zVSIYv6lB4kADhk+cu9I\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 16:56:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Club colombiano de tenis\",\n    \"fechaFundacion\": \"11/11/1985\",\n    \"imagen\": \"http://surl.li/mzfuvq\",\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n    \"socios\": [],\n    \"id\": \"822a53c6-87ea-4123-bf3e-55fe5a4da377\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un club con un ID que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El club con este id no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"nombre\": \"Club colombiano de tenis\",\r\n    \"fechaFundacion\": \"11/11/1985\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",          \r\n    \"socios\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar un club con un ID que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"nombre\": \"Club colombiano de tenis\",\r\n    \"fechaFundacion\": \"11/11/1985\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",          \r\n    \"socios\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44-s0oiYEbdHvbecQYjVqP5dvZiSPo\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 16:55:27 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El club con este id no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un club por su ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubes/{{clubId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes",
+						"{{clubId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un club por su ID",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar un club con un ID que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El club con este id no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubes/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un club con un ID que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44-s0oiYEbdHvbecQYjVqP5dvZiSPo\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 16:57:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El club con este id no fue encontrado\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "clubId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
