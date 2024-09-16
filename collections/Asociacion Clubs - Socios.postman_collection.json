@@ -1,0 +1,1317 @@
+{
+	"info": {
+		"_postman_id": "4873f1b5-8c9b-4331-94b3-adb0c4351d8a",
+		"name": "Asociacion Clubs - Socios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37777571"
+	},
+	"item": [
+		{
+			"name": "Crear un club válido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.collectionVariables.set(\"clubId\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"nombre\": \"Club de tenis\",\r\n    \"fechaFundacion\": \"09/03/1983\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",          \r\n    \"socios\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubes",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubes"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un club válido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"nombre\": \"Club de tenis\",\r\n    \"fechaFundacion\": \"09/03/1983\",\r\n    \"imagen\": \"http://surl.li/mzfuvq\",\r\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",          \r\n    \"socios\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "217"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"d9-4pQxxFBiYSM3cPZDV3mqDB8t7Es\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:03:26 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Club de tenis\",\n    \"fechaFundacion\": \"09/03/1983\",\n    \"imagen\": \"http://surl.li/mzfuvq\",\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n    \"socios\": [],\n    \"id\": \"c949ba60-b910-4636-b0d3-8f724c50724e\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear un socio válido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.collectionVariables.set(\"memberId\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"nombre\": \"Pepito Perez\", \r\n    \"correoElectronico\": \"pepito.perez@test.com\",\r\n    \"fechaNacimiento\": \"09/03/1983\",\r\n    \"clubes\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/members",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un socio válido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"nombre\": \"Pepito Perez\", \r\n    \"correoElectronico\": \"pepito.perez@test.com\",\r\n    \"fechaNacimiento\": \"09/03/1983\",\r\n    \"clubes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"members"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "156"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9c-wpH4DxGXSKYX9A5GL8a+xF2sqac\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:03:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Pepito Perez\",\n    \"correoElectronico\": \"pepito.perez@test.com\",\n    \"fechaNacimiento\": \"09/03/1983\",\n    \"clubes\": [],\n    \"id\": \"31b4b986-3d29-48a8-ac20-47aacc56e1b0\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear un socio válido 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.collectionVariables.set(\"memberId2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"nombre\": \"Pepito Perez\", \r\n    \"correoElectronico\": \"pepito.perez@test.com\",\r\n    \"fechaNacimiento\": \"09/03/1983\",\r\n    \"clubes\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/members",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Crear un socio válido 2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"nombre\": \"Pepito Perez\", \r\n    \"correoElectronico\": \"pepito.perez@test.com\",\r\n    \"fechaNacimiento\": \"09/03/1983\",\r\n    \"clubes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"members"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "156"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9c-YrMLuTYx9//W/Y9+3hjU9SzX3FI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:04:05 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"nombre\": \"Pepito Perez\",\n    \"correoElectronico\": \"pepito.perez@test.com\",\n    \"fechaNacimiento\": \"09/03/1983\",\n    \"clubes\": [],\n    \"id\": \"4039c18b-770d-460b-8288-2d3894b3f92f\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Agregar un socio a un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubs/{{clubId}}/members/{{memberId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubs",
+						"{{clubId}}",
+						"members",
+						"{{memberId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Agregar un socio a un club",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubs//members/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubs",
+								"",
+								"members",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "361"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"169-zJYW7nal51qzU+NkTyzZG2YImJ4\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:04:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"c949ba60-b910-4636-b0d3-8f724c50724e\",\n    \"nombre\": \"Club de tenis\",\n    \"fechaFundacion\": \"1983-03-09\",\n    \"imagen\": \"http://surl.li/mzfuvq\",\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n    \"socios\": [\n        {\n            \"id\": \"31b4b986-3d29-48a8-ac20-47aacc56e1b0\",\n            \"nombre\": \"Pepito Perez\",\n            \"correoElectronico\": \"pepito.perez@test.com\",\n            \"fechaNacimiento\": \"1983-03-09\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Asociar un socio que no existe a un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.contains(\"El socio con este id no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"nombre\": \"Pepito Perez\", \r\n    \"correoElectronico\": \"pepito.perez_test.com\",\r\n    \"fechaNacimiento\": \"09/03/1983\",\r\n    \"clubes\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubs/{{clubId}}/members/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubs",
+						"{{clubId}}",
+						"members",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Asociar un socio que no existe a un club",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \r\n    \"nombre\": \"Pepito Perez\", \r\n    \"correoElectronico\": \"pepito.perez_test.com\",\r\n    \"fechaNacimiento\": \"09/03/1983\",\r\n    \"clubes\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubs//members/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubs",
+								"",
+								"members",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"45-lL8IWxmlIXVEDx1PcbW/tNyg1ho\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:04:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El socio con este id no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los socios de un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of clubes > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clubs/{{clubId}}/members",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubs",
+						"{{clubId}}",
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener todos los socios de un club",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubs//members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubs",
+								"",
+								"members"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "146"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"92-gW3Y7dCjR7SuZMOdkkvPWXN/0+w\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:04:53 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"31b4b986-3d29-48a8-ac20-47aacc56e1b0\",\n        \"nombre\": \"Pepito Perez\",\n        \"correoElectronico\": \"pepito.perez@test.com\",\n        \"fechaNacimiento\": \"1983-03-09\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un socio que pertenece a un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Id recuperado igual al enviado ', function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.id).to.eql(pm.collectionVariables.get(\"memberId\"))\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clubs/{{clubId}}/members/{{memberId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubs",
+						"{{clubId}}",
+						"members",
+						"{{memberId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un socio que pertenece a un club",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubs//members/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubs",
+								"",
+								"members",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "144"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"90-S74PSiQMIb01KqiUnD3zTfDO0/s\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:05:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"31b4b986-3d29-48a8-ac20-47aacc56e1b0\",\n    \"nombre\": \"Pepito Perez\",\n    \"correoElectronico\": \"pepito.perez@test.com\",\n    \"fechaNacimiento\": \"1983-03-09\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un socio que no es parte un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El socio con este id no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/clubs/{{clubId}}/members/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubs",
+						"{{clubId}}",
+						"members",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Obtener un socio que no es parte un club",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubs//members/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubs",
+								"",
+								"members",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"45-lL8IWxmlIXVEDx1PcbW/tNyg1ho\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:05:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El socio con este id no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar los socios que pertenecen a un club",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"{{memberId2}}\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubs/{{clubId}}/members",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubs",
+						"{{clubId}}",
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar los socios que pertenecen a un club",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": \"\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubs//members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubs",
+								"",
+								"members"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "262"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"106-wzs38SGA0tURoFtk46djt1GyHi0\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:05:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"c949ba60-b910-4636-b0d3-8f724c50724e\",\n    \"nombre\": \"Club de tenis\",\n    \"fechaFundacion\": \"1983-03-09\",\n    \"imagen\": \"http://surl.li/mzfuvq\",\n    \"descripcion\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit\",\n    \"socios\": [\n        {\n            \"id\": \"4039c18b-770d-460b-8288-2d3894b3f92f\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar los socios de un club, con un socio inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El socio con este id no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubs/{{clubId}}/members",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubs",
+						"{{clubId}}",
+						"members"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Actualizar los socios de un club, con un socio inexistente",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": \"00000000-0000-0000-0000-000000000000\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubs//members",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubs",
+								"",
+								"members"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"45-lL8IWxmlIXVEDx1PcbW/tNyg1ho\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:06:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El socio con este id no fue encontrado\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un socio por su ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubs/{{clubId}}/members/{{memberId2}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubs",
+						"{{clubId}}",
+						"members",
+						"{{memberId2}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un socio por su ID",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubs//members/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubs",
+								"",
+								"members",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar un socio con un ID que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El socio con este id no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/clubs/{{clubId}}/members/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"clubs",
+						"{{clubId}}",
+						"members",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Eliminar un socio con un ID que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/clubs//members/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"clubs",
+								"",
+								"members",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "69"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"45-lL8IWxmlIXVEDx1PcbW/tNyg1ho\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Sep 2024 17:06:40 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 404,\n    \"message\": \"El socio con este id no fue encontrado\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "memberId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "clubId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "memberId2",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
